@@ -13,7 +13,12 @@ import org.springframework.security.provisioning.InMemoryUserDetailsManager;
 public class AuthenticationConfig {
 
     @Bean
-    public UserDetailsService userDetailsService(BCryptPasswordEncoder bCryptpasswordEncoder){
+    public static BCryptPasswordEncoder passwordEncoder() {
+        return new BCryptPasswordEncoder();
+    }
+
+    @Bean
+    public UserDetailsService userDetailsService(BCryptPasswordEncoder bCryptpasswordEncoder) {
         InMemoryUserDetailsManager manager = new InMemoryUserDetailsManager();
         manager.createUser(User.withUsername("user")
                 .password(bCryptpasswordEncoder.encode("userPass"))
@@ -25,10 +30,6 @@ public class AuthenticationConfig {
                 .build());
 
         return manager;
-    }
-    @Bean
-    public static BCryptPasswordEncoder passwordEncoder() {
-        return new BCryptPasswordEncoder();
     }
 
 }

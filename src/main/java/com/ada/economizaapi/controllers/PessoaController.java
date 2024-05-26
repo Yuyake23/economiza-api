@@ -1,7 +1,7 @@
 package com.ada.economizaapi.controllers;
 
-import com.ada.economizaapi.services.PessoaService;
 import com.ada.economizaapi.entities.Pessoa;
+import com.ada.economizaapi.services.PessoaService;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
@@ -20,24 +20,24 @@ public class PessoaController {
     @ResponseStatus(HttpStatus.OK)
     @GetMapping("/{id}")
     public Optional<Pessoa> findById(@PathVariable Long id) {
-            return pessoaService.findById(id);
+        return pessoaService.findById(id);
     }
 
     @ResponseStatus(HttpStatus.CREATED)
     @PostMapping()
     public Pessoa post(@RequestBody Pessoa pessoa) {
-            return pessoaService.save(pessoa);
+        return pessoaService.save(pessoa);
     }
 
     @ResponseStatus(HttpStatus.OK)
     @PutMapping("/{id}")
     public Pessoa update(@PathVariable Long id, @RequestBody Pessoa pessoa) {
-            return pessoaService.update(id, pessoa);
+        return pessoaService.update(id, pessoa);
     }
 
     @ResponseStatus(HttpStatus.NO_CONTENT)
     @DeleteMapping("/{id}")
     public void delete(@PathVariable Long id) {
-            pessoaService.deleteById(id);
+        pessoaService.deleteById(id);
     }
 }

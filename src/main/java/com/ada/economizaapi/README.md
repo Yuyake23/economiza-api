@@ -11,15 +11,19 @@
 ### ENTRADA: --
 
 ### SAÍDA:
+
 STATUS 200 - OK
+
 #### - Lista de todos os produtos
 
 -----
+
 ## GET /produto/id
 
 ### ENTRADA: --
 
 ### SAÍDA:
+
 STATUS 200 - OK
 
 ```
@@ -46,6 +50,7 @@ STATUS 200 - OK
 ```
 
 ### SAÍDA:
+
 STATUS 201 - CREATED
 
 ```
@@ -72,6 +77,7 @@ STATUS 201 - CREATED
 ```
 
 ### SAÍDA:
+
 STATUS 200 - OK
 
 ```
@@ -83,14 +89,16 @@ STATUS 200 - OK
     "descricao": "Um produto modelo"
 }
 ```
+
 -----
+
 ## DELETE /produto/id
 
 ### ENTRADA: --
 
 ### SAÍDA:
-STATUS 204 - NO CONTENT
 
+STATUS 204 - NO CONTENT
 
 ## - Mercado:
 
@@ -101,15 +109,19 @@ STATUS 204 - NO CONTENT
 ### ENTRADA: --
 
 ### SAÍDA:
+
 STATUS 200 - OK
+
 #### - Lista de todos os mercados
 
 -----
+
 ## GET /mercado/id
 
 ### ENTRADA: --
 
 ### SAÍDA:
+
 STATUS 200 - OK
 
 ```
@@ -128,10 +140,13 @@ STATUS 200 - OK
 ## POST /mercado
 
 ### ENTRADA:
+
 OBS.: A localização é uma String com as coordenadas composta da seguinte forma:
 "longitude, latitude" (ordem inversa das coordenadas do maps, que mostra latitude, longitude)
 
-OBS 2: Caso queira realizar a buscar das coordenadas no google maps para conferência durante a correção, só inverter e colocar na busca do maps sem as aspas (ex.: -7.227417342275939, -35.88554745853871)
+OBS 2: Caso queira realizar a buscar das coordenadas no google maps para conferência durante a correção, só inverter e
+colocar na busca do maps sem as aspas (ex.: -7.227417342275939, -35.88554745853871)
+
 ```
 {
     "nome": "mercado",
@@ -140,6 +155,7 @@ OBS 2: Caso queira realizar a buscar das coordenadas no google maps para confer�
 ```
 
 ### SAÍDA:
+
 STATUS 201 - CREATED
 
 ```
@@ -167,6 +183,7 @@ STATUS 201 - CREATED
 ```
 
 ### SAÍDA:
+
 STATUS 200 - OK
 
 ```
@@ -180,22 +197,27 @@ STATUS 200 - OK
     }
 }
 ```
+
 -----
+
 ## DELETE /mercado/id
 
 ### ENTRADA: --
 
 ### SAÍDA:
+
 STATUS 204 - NO CONTENT
 
 ## - Pessoa:
 
 -----
+
 ## GET /pessoa/id
 
 ### ENTRADA: --
 
 ### SAÍDA:
+
 STATUS 200 - OK
 
 ```
@@ -225,6 +247,7 @@ STATUS 200 - OK
 ```
 
 ### SAÍDA:
+
 STATUS 201 - CREATED
 
 ```
@@ -254,6 +277,7 @@ STATUS 201 - CREATED
 ```
 
 ### SAÍDA:
+
 STATUS 200 - OK
 
 ```
@@ -268,10 +292,13 @@ STATUS 200 - OK
     "custoPorDistancia": 2.7
 }
 ```
+
 -----
+
 ## DELETE /pessoa/id
 
 ### ENTRADA: --
 
 ### SAÍDA:
+
 STATUS 204 - NO CONTENT

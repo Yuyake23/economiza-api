@@ -1,12 +1,9 @@
 package com.ada.economizaapi.services;
 
 import com.ada.economizaapi.entities.Mercado;
-import com.ada.economizaapi.exceptions.EntidadeNaoExisteException;
 import com.ada.economizaapi.repositories.MercadoRepository;
 import jakarta.transaction.Transactional;
 import org.springframework.stereotype.Service;
-
-import static org.springframework.beans.BeanUtils.copyProperties;
 
 @Service
 public class MercadoService extends ServicoAbstrato<Mercado, Long, MercadoRepository> {

@@ -7,14 +7,13 @@ import com.ada.economizaapi.services.responses.Feature;
 import com.ada.economizaapi.services.responses.Properties;
 import com.ada.economizaapi.services.responses.Segment;
 import io.netty.handler.ssl.SslContext;
+import io.netty.handler.ssl.SslContextBuilder;
+import io.netty.handler.ssl.util.InsecureTrustManagerFactory;
+import org.springframework.http.client.reactive.ReactorClientHttpConnector;
 import org.springframework.stereotype.Service;
 import org.springframework.web.reactive.function.client.WebClient;
 import reactor.core.publisher.Mono;
-
-import org.springframework.http.client.reactive.ReactorClientHttpConnector;
 import reactor.netty.http.client.HttpClient;
-import io.netty.handler.ssl.SslContextBuilder;
-import io.netty.handler.ssl.util.InsecureTrustManagerFactory;
 
 import javax.net.ssl.SSLException;
 

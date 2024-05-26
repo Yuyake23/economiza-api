@@ -2,8 +2,9 @@ package com.ada.economizaapi.entities;
 
 import jakarta.persistence.*;
 import lombok.*;
-import java.util.Objects;
+
 import javax.validation.constraints.NotBlank;
+import java.util.Objects;
 
 @Getter
 @Setter
@@ -23,7 +24,7 @@ public class Localizacao {
     public Localizacao(String coordenadas) {
         this.coordenadas = coordenadas;
     }
-  
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;

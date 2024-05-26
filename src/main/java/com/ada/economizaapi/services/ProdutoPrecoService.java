@@ -5,7 +5,7 @@ import com.ada.economizaapi.repositories.ProdutoPrecoRepository;
 import org.springframework.stereotype.Service;
 
 @Service
-public class ProdutoPrecoService extends ServicoAbstrato<ProdutoPreco, Long, ProdutoPrecoRepository>{
+public class ProdutoPrecoService extends ServicoAbstrato<ProdutoPreco, Long, ProdutoPrecoRepository> {
 
     public ProdutoPrecoService(ProdutoPrecoRepository repository) {
         super(repository);
