@@ -27,6 +27,12 @@ public class Mercado {
     @OneToMany(mappedBy = "mercado")
     private List<ProdutoPreco> produtoPrecos = new ArrayList<>();
 
+    public Mercado(Long id, String nome, Localizacao localizacao) {
+        this.id = id;
+        this.nome = nome;
+        this.localizacao = localizacao;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;

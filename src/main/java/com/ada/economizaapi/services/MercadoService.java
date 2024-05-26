@@ -2,8 +2,8 @@ package com.ada.economizaapi.services;
 
 import com.ada.economizaapi.entities.Mercado;
 import com.ada.economizaapi.exceptions.EntidadeNaoExisteException;
-import com.ada.economizaapi.repositories.LocalizacaoRepository;
 import com.ada.economizaapi.repositories.MercadoRepository;
+import jakarta.transaction.Transactional;
 import org.springframework.stereotype.Service;
 
 import static org.springframework.beans.BeanUtils.copyProperties;
@@ -19,31 +19,20 @@ public class MercadoService extends ServicoAbstrato<Mercado, Long, MercadoReposi
     }
 
     @Override
+    @Transactional
     public Mercado save(Mercado mercado) {
         if (mercado.getLocalizacao() != null && mercado.getLocalizacao().getId() == null) {
             localizacaoService.save(mercado.getLocalizacao());
         }
-        return repository.save(mercado);
+        return super.save(mercado);
     }
 
     @Override
+    @Transactional
     public Mercado update(Long id, Mercado mercado) {
-        if (!repository.existsById(id)) {
-            throw new EntidadeNaoExisteException();
-        }
         if (mercado.getLocalizacao() != null && mercado.getLocalizacao().getId() == null) {
             localizacaoService.save(mercado.getLocalizacao());
         }
-
-        Mercado mercadoExistente = this.findById(id)
-                .orElseThrow(EntidadeNaoExisteException::new);
-
-        copyProperties(mercado, mercadoExistente, "id", "localizacao");
-
-        if (mercado.getLocalizacao() != null && mercadoExistente.getLocalizacao() != null) {
-            copyProperties(mercado.getLocalizacao(), mercadoExistente.getLocalizacao(), "id");
-        }
-
-        return repository.save(mercadoExistente);
+        return super.update(id, mercado);
     }
 }

@@ -58,9 +58,6 @@ public abstract class ServicoAbstrato<E, ID, R extends JpaRepository<E, ID>> {
     }
 
     public E update(ID id, E entity) {
-        if (!this.existsById(id)) {
-            throw new EntidadeNaoExisteException();
-        }
         E existingEntity = this.findById(id)
                 .orElseThrow(EntidadeNaoExisteException::new);
 

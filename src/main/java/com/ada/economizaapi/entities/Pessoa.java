@@ -29,6 +29,13 @@ public class Pessoa {
     @OneToMany(mappedBy = "pessoa")
     private List<ListaCompra> listasCompra = new ArrayList<>();
 
+    public Pessoa(Long id, String nome, Localizacao localizacao, Double custoPorDistancia) {
+        this.id = id;
+        this.nome = nome;
+        this.localizacao = localizacao;
+        this.custoPorDistancia = custoPorDistancia;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
