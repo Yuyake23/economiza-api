@@ -2,7 +2,6 @@ package com.ada.economizaapi.controllers;
 
 import com.ada.economizaapi.services.PessoaService;
 import com.ada.economizaapi.entities.Pessoa;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
@@ -12,8 +11,11 @@ import java.util.Optional;
 @RequestMapping("/pessoa")
 public class PessoaController {
 
-    @Autowired
-    PessoaService pessoaService;
+    private final PessoaService pessoaService;
+
+    public PessoaController(PessoaService pessoaService) {
+        this.pessoaService = pessoaService;
+    }
 
     @ResponseStatus(HttpStatus.OK)
     @GetMapping("/{id}")

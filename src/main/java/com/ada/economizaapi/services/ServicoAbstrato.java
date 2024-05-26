@@ -15,7 +15,7 @@ import static org.springframework.beans.BeanUtils.copyProperties;
 
 public abstract class ServicoAbstrato<E, ID, R extends JpaRepository<E, ID>> {
 
-    private final R repository;
+    final R repository;
 
     public ServicoAbstrato(R repository) {
         this.repository = repository;

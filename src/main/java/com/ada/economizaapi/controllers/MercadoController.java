@@ -2,7 +2,6 @@ package com.ada.economizaapi.controllers;
 
 import com.ada.economizaapi.services.MercadoService;
 import com.ada.economizaapi.entities.Mercado;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
@@ -13,8 +12,11 @@ import java.util.Optional;
 @RequestMapping("/mercado")
 public class MercadoController {
 
-    @Autowired
-    MercadoService mercadoService;
+    private final MercadoService mercadoService;
+
+    public MercadoController(MercadoService mercadoService) {
+        this.mercadoService = mercadoService;
+    }
 
     @ResponseStatus(HttpStatus.OK)
     @GetMapping()

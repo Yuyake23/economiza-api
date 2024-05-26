@@ -4,7 +4,6 @@ import com.ada.economizaapi.entities.Mercado;
 import com.ada.economizaapi.exceptions.EntidadeNaoExisteException;
 import com.ada.economizaapi.repositories.LocalizacaoRepository;
 import com.ada.economizaapi.repositories.MercadoRepository;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import static org.springframework.beans.BeanUtils.copyProperties;
@@ -12,27 +11,24 @@ import static org.springframework.beans.BeanUtils.copyProperties;
 @Service
 public class MercadoService extends ServicoAbstrato<Mercado, Long, MercadoRepository> {
 
-    public MercadoService(MercadoRepository repository) {
-        super(repository);
+    private final LocalizacaoRepository localizacaoRepository;
+
+    public MercadoService(MercadoRepository mercadoRepository, LocalizacaoRepository localizacaoRepository) {
+        super(mercadoRepository);
+        this.localizacaoRepository = localizacaoRepository;
     }
-
-    @Autowired
-    private MercadoRepository mercadoRepository;
-
-    @Autowired
-    private LocalizacaoRepository localizacaoRepository;
 
     @Override
     public Mercado save(Mercado mercado) {
         if (mercado.getLocalizacao() != null && mercado.getLocalizacao().getId() == null) {
             localizacaoRepository.save(mercado.getLocalizacao());
         }
-        return mercadoRepository.save(mercado);
+        return repository.save(mercado);
     }
 
     @Override
     public Mercado update(Long id, Mercado mercado) {
-        if (!mercadoRepository.existsById(id)) {
+        if (!repository.existsById(id)) {
             throw new EntidadeNaoExisteException();
         }
         if (mercado.getLocalizacao() != null && mercado.getLocalizacao().getId() == null) {
@@ -48,6 +44,6 @@ public class MercadoService extends ServicoAbstrato<Mercado, Long, MercadoReposi
             copyProperties(mercado.getLocalizacao(), mercadoExistente.getLocalizacao(), "id");
         }
 
-        return mercadoRepository.save(mercadoExistente);
+        return repository.save(mercadoExistente);
     }
 }

@@ -2,7 +2,6 @@ package com.ada.economizaapi.controllers;
 
 import com.ada.economizaapi.entities.ProdutoPreco;
 import com.ada.economizaapi.services.ProdutoPrecoService;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
@@ -12,8 +11,11 @@ import java.util.List;
 @RequestMapping("/produto-preco")
 public class ProdutoPrecoController {
 
-    @Autowired
-    ProdutoPrecoService produtoPrecoService;
+    private final ProdutoPrecoService produtoPrecoService;
+
+    public ProdutoPrecoController(ProdutoPrecoService produtoPrecoService) {
+        this.produtoPrecoService = produtoPrecoService;
+    }
 
     @ResponseStatus(HttpStatus.OK)
     @GetMapping()

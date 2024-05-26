@@ -14,14 +14,11 @@ import static org.springframework.beans.BeanUtils.copyProperties;
 @Service
 public class PessoaService extends ServicoAbstrato<Pessoa, Long, PessoaRepository> {
 
-    @Autowired
-    private PessoaRepository pessoaRepository;
+    private final LocalizacaoRepository localizacaoRepository;
 
-    @Autowired
-    private LocalizacaoRepository localizacaoRepository;
-
-    public PessoaService(PessoaRepository repository) {
-        super(repository);
+    public PessoaService(PessoaRepository pessoaRepository, LocalizacaoRepository localizacaoRepository) {
+        super(pessoaRepository);
+        this.localizacaoRepository = localizacaoRepository;
     }
 
     @Override
@@ -29,12 +26,12 @@ public class PessoaService extends ServicoAbstrato<Pessoa, Long, PessoaRepositor
         if (pessoa.getLocalizacao() != null && pessoa.getLocalizacao().getId() == null) {
             localizacaoRepository.save(pessoa.getLocalizacao());
         }
-        return pessoaRepository.save(pessoa);
+        return repository.save(pessoa);
     }
 
     @Override
     public Pessoa update(Long id, Pessoa pessoa) {
-        if (!pessoaRepository.existsById(id)) {
+        if (!repository.existsById(id)) {
             throw new EntidadeNaoExisteException();
         }
         if (pessoa.getLocalizacao() != null && pessoa.getLocalizacao().getId() == null) {
@@ -50,6 +47,6 @@ public class PessoaService extends ServicoAbstrato<Pessoa, Long, PessoaRepositor
             copyProperties(pessoa.getLocalizacao(), pessoaExistente.getLocalizacao(), "id");
         }
 
-        return pessoaRepository.save(pessoaExistente);
+        return repository.save(pessoaExistente);
     }
 }
