@@ -1,12 +1,8 @@
 package com.ada.economizaapi.services;
 
 import com.ada.economizaapi.entities.Pessoa;
-import com.ada.economizaapi.entities.Pessoa;
 import com.ada.economizaapi.exceptions.EntidadeNaoExisteException;
-import com.ada.economizaapi.repositories.LocalizacaoRepository;
 import com.ada.economizaapi.repositories.PessoaRepository;
-import com.ada.economizaapi.repositories.PessoaRepository;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import static org.springframework.beans.BeanUtils.copyProperties;
@@ -14,19 +10,19 @@ import static org.springframework.beans.BeanUtils.copyProperties;
 @Service
 public class PessoaService extends ServicoAbstrato<Pessoa, Long, PessoaRepository> {
 
-    private final LocalizacaoRepository localizacaoRepository;
+    private final LocalizacaoService localizacaoService;
 
-    public PessoaService(PessoaRepository pessoaRepository, LocalizacaoRepository localizacaoRepository) {
+    public PessoaService(PessoaRepository pessoaRepository, LocalizacaoService localizacaoService) {
         super(pessoaRepository);
-        this.localizacaoRepository = localizacaoRepository;
+        this.localizacaoService = localizacaoService;
     }
 
     @Override
     public Pessoa save(Pessoa pessoa) {
         if (pessoa.getLocalizacao() != null && pessoa.getLocalizacao().getId() == null) {
-            localizacaoRepository.save(pessoa.getLocalizacao());
+            localizacaoService.save(pessoa.getLocalizacao());
         }
-        return repository.save(pessoa);
+        return super.save(pessoa);
     }
 
     @Override
@@ -35,7 +31,7 @@ public class PessoaService extends ServicoAbstrato<Pessoa, Long, PessoaRepositor
             throw new EntidadeNaoExisteException();
         }
         if (pessoa.getLocalizacao() != null && pessoa.getLocalizacao().getId() == null) {
-            localizacaoRepository.save(pessoa.getLocalizacao());
+            localizacaoService.save(pessoa.getLocalizacao());
         }
 
         Pessoa pessoaExistente = this.findById(id)

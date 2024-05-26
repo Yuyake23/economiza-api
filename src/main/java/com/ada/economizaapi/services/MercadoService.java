@@ -11,17 +11,17 @@ import static org.springframework.beans.BeanUtils.copyProperties;
 @Service
 public class MercadoService extends ServicoAbstrato<Mercado, Long, MercadoRepository> {
 
-    private final LocalizacaoRepository localizacaoRepository;
+    private final LocalizacaoService localizacaoService;
 
-    public MercadoService(MercadoRepository mercadoRepository, LocalizacaoRepository localizacaoRepository) {
+    public MercadoService(MercadoRepository mercadoRepository, LocalizacaoService localizacaoService) {
         super(mercadoRepository);
-        this.localizacaoRepository = localizacaoRepository;
+        this.localizacaoService = localizacaoService;
     }
 
     @Override
     public Mercado save(Mercado mercado) {
         if (mercado.getLocalizacao() != null && mercado.getLocalizacao().getId() == null) {
-            localizacaoRepository.save(mercado.getLocalizacao());
+            localizacaoService.save(mercado.getLocalizacao());
         }
         return repository.save(mercado);
     }
@@ -32,7 +32,7 @@ public class MercadoService extends ServicoAbstrato<Mercado, Long, MercadoReposi
             throw new EntidadeNaoExisteException();
         }
         if (mercado.getLocalizacao() != null && mercado.getLocalizacao().getId() == null) {
-            localizacaoRepository.save(mercado.getLocalizacao());
+            localizacaoService.save(mercado.getLocalizacao());
         }
 
         Mercado mercadoExistente = this.findById(id)
